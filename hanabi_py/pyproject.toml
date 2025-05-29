@@ -1,0 +1,12 @@
+[project]
+name = "hanabi_py"
+version = "0.1.0"
+description = "Python bindings for the C++ game library"
+requires-python = ">=3.8"
+authors = [{ name = "Annie", email = "angiokas@pm.me" }]
+readme = ""
+license = { text = "MIT" }
+
+[build-system]
+requires = ["scikit-build-core", "pybind11", "cmake"]
+build-backend = "scikit_build_core.build"
