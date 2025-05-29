@@ -25,11 +25,11 @@ namespace hanabi {
         }
         std::vector<std::pair<int, int>> deck;
 
-        int n = settings.numPlayers;
+        int n = settings.rankDistr.size();
 
-        for (int i = 0; i < settings.numberOfSuits; i++) {
-            for (int j = 0; j < n; j++) {
-                for (int k = 0; k < settings.rankDistr[j]; k++) {
+        for (int i = 1; i <= settings.numberOfSuits; i++) {
+            for (int j = 1; j <= n; j++) {
+                for (int k = 0; k < settings.rankDistr[j-1]; k++) {
                     deck.push_back({i, j});
                 }
             }
@@ -43,40 +43,48 @@ namespace hanabi {
             Player player = Player(i, "Player");
             for (int j = 0; j < settings.cardsPerHand; j++) {
                 (*player.hand)[j] = Card(deck.back());
-                drawPile->pop();
+                deck.pop_back();
             }
             players->push_back(player);
         }
-
+        for (int i=0;i<deck.size(); i++) {
+            drawPile->push(Card(deck.back()));
+        }
         clues = settings.initialClues;
         fuses = settings.initialFuses;
+    }
+
+    void Game::Start() {
+        std::cout << "Starting Hanabi Game!" << std::endl;
+        nextTurn();
     }
 
     void Game::PlayCard(int i, int j) {
         if (TurnValidity(i)) {
             Player& player = (*players)[i];
             Card& card = (*player.hand)[j];
+
             if (suitStack[card.suit].rank == card.rank - 1) {
-                std::cout <<"Nice! PlayerID="<<player.id <<" played " <<card<< std::endl;
+                std::cout <<"☆ -> PlayerID="<<player.id <<" played " <<card<< std::endl;
                 updateScore();
                 Card old_stack_card = suitStack[card.suit];
                 suitStack[card.suit] = card; //update Stack
-                DrawAndReplaceCard(card);
                 std::cout << "Updated stack"<<old_stack_card<<" -> " << card << std::endl;
-                nextTurn();
+                DrawAndReplaceCard(card);
+
             }
             else {
-                std::cout <<"Bad guess :( PlayerID="<< player.id <<" played " << card<< std::endl;
+                std::cout <<"X -> PlayerID="<< player.id <<" played " << card<< std::endl;
                 fuses--;
                 std::cout <<"you are down to :" <<fuses<< " fuses" <<std::endl;
             }
+        nextTurn();
         }
     }
     void Game::DrawAndReplaceCard(Card& card) const {
-        Card new_card = drawPile->top(); // Draw a new card
+        const Card new_card = drawPile->top(); // Draw a new card
         drawPile->pop();
         card = new_card;
-
     }
 
 
@@ -105,14 +113,15 @@ namespace hanabi {
 
     bool Game::TurnValidity(int i) const {
         if (turn % (i + 1) != 0) {
-            std::cout << "Not your turn!" << std::endl;
+            std::cout << "Not your turn Player_"<<i<<"!" << std::endl;
             return false;
         }
         return true;
     }
     void Game::nextTurn() {
         turn++;
-        std::cout <<"Next turn! turn="<<turn <<" -> Now it is Player" <<(*players)[turn % settings.numPlayers]<< "'s turn." <<std::endl;
+        int j = turn % settings.numPlayers;
+        std::cout <<"Starting turn="<<turn <<" -------> Waiting for Player"<<(*players)[j].id<<"." <<std::endl;
     }
     void Game::updateScore() {
         score ++;
@@ -121,12 +130,14 @@ namespace hanabi {
 
 //PRINT FUNCTIONS----------------------------------------------------------------------
     std::ostream &operator<<(std::ostream &os, const Card &card) {
-        os << "[Suit: " << card.suit << "\t Rank: " << card.rank <<"]";
+        os << "[Suit: " << card.suit << " Rank: " << card.rank <<"]";
         return os;
 
     };
     std::ostream &operator<<(std::ostream &os, const Player &player) {
-        os << "PlayerID=" << player.id << "\t PlayerName=" << player.name << std::endl;
+        std::cout << std::setfill('-') << std::setw(30) << "" << "\n";
+        os << "Player=" << player.id << " PlayerName=" << player.name << std::endl;
+        std::cout << std::setfill('-') << std::setw(30) << "" << "\n";
         int n = player.hand->size();
         for (int i=0;i<n;i++) {
             os <<"i="<<i<<"\t "<< player.hand->at(i) << std::endl;
@@ -148,6 +159,7 @@ namespace hanabi {
         os << "Clues: " << game.clues << "\n";
         os << "Fuses: " << game.fuses << "\n";
         os << "Score: " << game.score << "\n";
+        os << "Turn: " << game.turn << "\n";
 
         return os;
     }

@@ -56,14 +56,13 @@ namespace hanabi {
         int score = 0;
         int turn = 0;
 
+        explicit Game(const Settings &settings);
 
+        void Start();
         void PlayCard(int i, int j);
-
         void DiscardCard(int i, int j);
-
         void GiveHint(int i, int j, int k, HintType hintType);
 
-        explicit Game(const Settings &settings);
 
     private:
         void nextTurn();
