@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library(hanabi STATIC
         src/Game.cpp
-        src/Pile.cpp
 )
 target_include_directories(hanabi PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
 )

@@ -14,10 +14,9 @@ int main() {
         Server server;
         server.Start(port);
         std::cout << "Server stopped." << std::endl;
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
 
     return 0;
-
 }

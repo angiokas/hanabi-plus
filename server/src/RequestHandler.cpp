@@ -5,7 +5,6 @@
 #include "RequestHandler.h"
 #include <boost/asio.hpp>
 #include <iostream>
-#include <thread>
 #include <memory>
 #include <string>
 #include <utility>

@@ -7,3 +7,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(server src/main.cpp src/Server.cpp src/SessionManager.cpp src/Session.cpp)
 
 target_link_libraries(server PRIVATE hanabi)
+install(TARGETS server DESTINATION bin)

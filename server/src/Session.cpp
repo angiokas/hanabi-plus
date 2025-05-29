@@ -8,11 +8,11 @@
 #include <boost/uuid/uuid_io.hpp>
 namespace basio = boost::asio;
 
-std::string extract_line(boost::asio::streambuf& buf) {
+std::string extract_line(boost::asio::streambuf &buf) {
     std::istream is(&buf);
     std::string line;
     std::getline(is, line);
-    if (!line.empty() && line.back() == '\r') line.pop_back();  // Remove trailing '\r' if present
+    if (!line.empty() && line.back() == '\r') line.pop_back(); // Remove trailing '\r' if present
     return line;
 }
 
@@ -94,16 +94,16 @@ void Session::send_message(const std::string &message) {
                            if (ec) {
                                std::cout << "Write error: " << ec.message() << "\n";
                            } else {
-                               std::cout << "Message sent from SessionID="<<self->id <<":"<< std::endl;
-                               std::cout<< message << std::endl;
+                               std::cout << "Message sent from SessionID=" << self->id << ":" << std::endl;
+                               std::cout << message << std::endl;
                            }
                            //onResponseSent(ec, bytes_transferred);
                        });
 }
 
 void Session::onRequestReceived(const std::string &request) {
-    std::cout << "Received request from SessionID="<<id <<":"<< std::endl;
-    std::cout<< request << std::endl;
+    std::cout << "Received request from SessionID=" << id << ":" << std::endl;
+    std::cout << request << std::endl;
     StartAsyncRead();
 
     //std::string m_response = ProcessRequest(m_request);
