@@ -1,3 +1,6 @@
 .clang-tidy
 .idea/
 hanabi.cppm
+CMakeFiles
+CMakeCache.txt
+*.cmake
