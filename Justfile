@@ -1,5 +1,5 @@
 default:
-    @echo "bla"
+    @echo "List"
 configure:
     /snap/bin/cmake --preset=default
 
