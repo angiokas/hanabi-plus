@@ -1,0 +1,17 @@
+[project]
+name = "hanabipy"
+version = "0.1.0"
+description = "Hanabi bindings for the C++ library using pybind11"
+readme = "README.md"
+authors = [
+    { name = "angiokas", email = "angiokas@pm.me" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[build-system]
+requires = ["scikit-build-core", "pybind11"]
+build-backend = "scikit_build_core.build"
+
+[tool.pybind11]
+extension-modules = ["hanabipy"]

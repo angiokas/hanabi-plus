@@ -1,0 +1,7 @@
+# ninja log v5
+0	321	1748885857357164718	hanabi/CMakeFiles/hanabi_game.dir/main.cpp.o	8f5cff803d37f615
+0	1008	1748885858042970497	hanabi/CMakeFiles/hanabi.dir/src/hanabi/game.cpp.o	ca403c03b5c18a12
+1008	1047	1748885858081959527	lib/libhanabi.so	94560c74e2205738
+1047	1087	1748885858121948277	bin/hanabi_game	30ca7f338405a51f
+1	1372	1748885858406868118	hanabi/CMakeFiles/hanabipy.dir/src/hanabipy/hanabipy.cpp.o	64e5e18cd5d0405d
+1372	2078	1748885859113669486	/home/annie/Desktop/Projects/hanabi-plus/hanabi/hanabipy/hanabipy.cpython-312-x86_64-linux-gnu.so	8ee8d72171423f2d

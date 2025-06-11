@@ -1,0 +1,27 @@
+[project]
+name = "hanabi-sim"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "angiokas", email = "angiokas@pm/me" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "hanabipy",
+]
+
+[project.scripts]
+hanabi-sim = "hanabi_sim:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+dependencies = [
+    "hanabipy",
+]
+
+[tool.uv.sources]
+hanabipy = { path = "../hanabi/hanabipy", editable = true }
+

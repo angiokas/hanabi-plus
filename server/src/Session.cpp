@@ -67,18 +67,32 @@ void Session::StartAsyncRead() {
     basio::async_read_until(*socket, requestBuffer, '\n',
                             [self](const boost::system::error_code &ec, std::size_t bytes_transferred) {
                                 if (bytes_transferred == 0) {
-                                    std::cout << "NONZERO BYTES DETECTED, PLEASE TYPE SOMETHING VALID" << std::endl;
+                                    std::cout << "ZERO BYTES DETECTED, PLEASE TYPE SOMETHING VALID" << std::endl;
                                     self->StartAsyncRead();
-                                } else if (ec) {
-                                    std::cout << "Error occurred!\n"
-                                            << "  Code    : " << ec.value() << "\n"
-                                            << "  Message : " << ec.message() << "\n"
-                                            << "  Category: " << ec.category().name() << std::endl;
+                                }
+                                if (ec) {
+                                    if (ec == basio::error::eof) {
+                                        std::cout << "Client disconnected: (EOF)" << std::endl;
+                                    } else if (ec == basio::error::operation_aborted) {
+                                        std::cout << "Operation cancelled!" << std::endl;
+                                    } else if (ec == basio::error::broken_pipe) {
+                                        std::cout << "Client closed connection during write." << std::endl;
+                                    } else {
+                                        std::cout << "Error occurred!\n"
+                                                << "  Code    : " << ec.value() << "\n"
+                                                << "  Message : " << ec.message() << "\n"
+                                                << "  Category: " << ec.category().name() << std::endl;
+                                    }
+
+                                    boost::system::error_code ignored_ec;
+                                    (*self->socket).shutdown(basio::ip::tcp::socket::shutdown_both, ignored_ec);
+                                    (*self->socket).close(ignored_ec);
+                                    std::cout << "Shut down socket!" << std::endl;
                                     return;
                                 }
                                 if (self->requestBuffer.size() > 1024) {
                                     std::cout << "Message too large, closing connection" << std::endl;
-                                    self->socket->close();
+                                    (*self->socket).close();
                                     return;
                                 }
                                 std::string request = extract_line(self->requestBuffer);
