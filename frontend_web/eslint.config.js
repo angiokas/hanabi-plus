@@ -20,6 +20,11 @@ export default defineConfig([
   {
     // Disable 'react/react-in-jsx-scope' for React 17+ JSX transform
     files: ["**/*.{jsx,tsx}"],
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
     rules: {
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",

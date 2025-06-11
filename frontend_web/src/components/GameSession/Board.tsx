@@ -1,5 +1,5 @@
 import Stack from "./Stack";
-import type { CardData } from "../types";
+import type { CardData } from "../../types";
 
 const Board: React.FC<{
   stacks: {

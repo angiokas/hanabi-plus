@@ -1,4 +1,4 @@
-import type { GameLogEntry } from "../types";
+import type { GameLogEntry } from "../../types";
 import { Eye, EyeOff } from "lucide-react";
 const GameLog: React.FC<{
   entries: GameLogEntry[];

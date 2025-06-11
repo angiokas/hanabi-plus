@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import { Play, Trash2, MessageCircle } from "lucide-react";
-import PlayerHand from "./PlayerHand";
-import StatusBar from "./StatusBar";
-import Board from "./Board";
-import DrawPile from "./DrawPile";
-import DiscardPile from "./DiscardPile";
-import Action from "./Action";
-import GameLog from "./GameLog";
+import PlayerHand from "@/components/GameSession/PlayerHand";
+import StatusBar from "@/components/GameSession/StatusBar";
+import Board from "@/components/GameSession/Board";
+import DrawPile from "@/components/GameSession/DrawPile";
+import DiscardPile from "@/components/GameSession/DiscardPile";
+import Action from "@/components/GameSession/Action";
+import GameLog from "@/components/GameSession/GameLog";
 
-import mockDiscardPile from "../constants/mockDiscardPile";
-import mockGameLog from "../constants/mockGameLog";
-import mockPlayers from "../constants/mockPlayers";
-import mockStacks from "../constants/mockStacks";
+import mockDiscardPile from "@/constants/mockDiscardPile";
+import mockGameLog from "@/constants/mockGameLog";
+import mockPlayers from "@/constants/mockPlayers";
+import mockStacks from "@/constants/mockStacks";
 
-const HanabiGame: React.FC = () => {
+const GameSession: React.FC = () => {
   const [logVisible, setLogVisible] = useState(false);
 
   const handleAction = (action: string) => {
@@ -74,4 +74,4 @@ const HanabiGame: React.FC = () => {
   );
 };
 
-export default HanabiGame;
+export default GameSession;

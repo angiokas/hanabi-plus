@@ -1,4 +1,4 @@
-  
+import type { GameLogEntry } from "@/types";  
 const mockGameLog: GameLogEntry[] = [
     { id: "1", timestamp: "10:30", action: "played Red 1", player: "Player 2" },
     {

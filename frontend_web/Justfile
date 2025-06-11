@@ -1,0 +1,5 @@
+default:
+    @just -list
+
+lint_project:
+    npx eslint "src/**/*.{ts,tsx,js,jsx}"

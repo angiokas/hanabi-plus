@@ -1,4 +1,4 @@
-  const mockStacks = [
+const mockStacks = [
     {
       color: "red" as const,
       topCard: {

@@ -1,5 +1,5 @@
 import Card from "./Card";
-import type { CardData } from "../types";
+import type { CardData } from "../../types";
 
 const Stack: React.FC<{
   color: "red" | "blue" | "green" | "yellow" | "white";

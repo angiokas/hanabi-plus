@@ -1,3 +1,4 @@
+import type { PlayerData } from "@/types";
 const mockPlayers: PlayerData[] = [
     {
       id: "1",

@@ -1,0 +1,25 @@
+/* Navigation Bar Styles */
+.navigation-bar {
+  @apply bg-black/20 backdrop-blur-md border-b border-white/10 sticky top-0 z-50;
+}
+
+.nav-container {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16;
+}
+
+/* Brand Styles */
+.nav-brand {
+  @apply flex items-center gap-3;
+}
+
+.brand-icon {
+  @apply w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center shadow-lg;
+}
+
+.brand-sparkle {
+  @apply w-6 h-6 text-white;
+}
+
+.brand-text {
+  @apply text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent;
+}

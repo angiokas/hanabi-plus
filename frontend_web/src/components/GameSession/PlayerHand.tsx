@@ -1,5 +1,5 @@
 import Card from "./Card";
-import type { PlayerData } from "../types";
+import type { PlayerData } from "../../types";
 const PlayerHand: React.FC<{
   player: PlayerData;
   className?: string;

@@ -1,5 +1,5 @@
 import Card from "./Card";
-import type { CardData } from "../types";
+import type { CardData } from "../../types";
 import { Trash2 } from "lucide-react";
 const DiscardPile: React.FC<{
   cards: CardData[];
